@@ -1,0 +1,23 @@
+name: Setup Lua and Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Lua
+        uses: leafo/gh-action-lua@v10
+        with:
+          luaVersion: "5.3"
+      
+      - name: Verify Lua Installation
+        run: |
+          lua -v
+          luac -v
+      
+      - name: Run Lua Script (Example)
+        run: |
+          echo "✅ Lua and Luac are ready to use!"
